@@ -1,4 +1,4 @@
-const { access_token } = process.env;
+const { access_token, mastodon_host } = process.env;
 
 const Promise = require('bluebird');
 const request = require('request');
@@ -6,7 +6,7 @@ const Masto = require('mastodon');
 
 const client = new Masto({
     access_token,
-    api_url: 'http://mastodon.local/api/v1/'
+    api_url: mastodon_host
 });
 
 const postPromise = Promise.promisify(client.post, { context: client });
