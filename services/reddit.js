@@ -1,9 +1,14 @@
-const { id, accessToken } = process.env;
+const { clientId, clientSecret, refreshToken } = process.env;
 const { version } = require('../package');
 
 const Swoowrap = require('snoowrap');
 
-const client = new Swoowrap({ userAgent: `web:${id}:${version} (by /u/Kolyness)`, accessToken });
+const client = new Swoowrap({
+    userAgent: `web:${clientId}:${version} (by /u/Kolyness)`,
+    clientId,
+    clientSecret,
+    refreshToken
+});
 
 async function getHot(limit = 5) {
 

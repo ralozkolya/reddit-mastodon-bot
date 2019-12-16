@@ -1,4 +1,4 @@
-const { mastodonAccessToken: access_token } = process.env;
+const { access_token } = process.env;
 
 const Promise = require('bluebird');
 const request = require('request');
