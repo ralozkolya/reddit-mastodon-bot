@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
-require('dotenv').config();
+const path = require('path');
+console.log(path.resolve(__dirname + '/.env'));
+require('dotenv').config({ path: path.resolve(__dirname + '/.env') });
 
 const { getHot } = require('./services/reddit');
 const { knex, store, getFiltered } = require('./services/db');

@@ -1,4 +1,4 @@
-const { host, database, username: user, password } = require('dotenv').config().parsed;
+const { host, database, username: user, password } = process.env;
 
 const knex = require('knex')({
     client: 'mysql',
