@@ -20,7 +20,7 @@ async function postStatus(post) {
     });
 
     return client.post('/statuses', {
-        status: post.title,
+        status: post.title + '\n#funny',
         media_ids: [ id ]
     });
 }
