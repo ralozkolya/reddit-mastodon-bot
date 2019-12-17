@@ -9,7 +9,6 @@
   "author": "Nikoloz Razmadze <nikoloz@razmadze.me>",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.7.2",
     "dotenv": "^8.2.0",
     "knex": "^0.20.4",
     "mastodon": "^1.2.2",

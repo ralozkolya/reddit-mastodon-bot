@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const path = require('path');
-console.log(path.resolve(__dirname + '/.env'));
 require('dotenv').config({ path: path.resolve(__dirname + '/.env') });
 
 const { getHot } = require('./services/reddit');
@@ -22,7 +21,9 @@ const { postStatus } = require('./services/mastodon');
                 status = await postStatus(post);
                 await store(post);
                 console.log(`Posted: ${post.title}`);
-            } catch (e) {}
+            } catch (e) {
+                console.error(e.message);
+            }
 
         } while (!status && filtered.length);
 
