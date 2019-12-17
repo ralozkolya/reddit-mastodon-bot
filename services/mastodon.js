@@ -14,8 +14,9 @@ async function postStatus(post) {
         return;
     }
 
-    const { id } = await client.post('/media', {
-        file: request(post.url)
+    const { data: { id } } = await client.post('/media', {
+        file: request(post.url),
+        focus: '0,1'
     });
 
     return client.post('/statuses', {
