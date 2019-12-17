@@ -24,7 +24,7 @@ const { postStatus } = require('./services/mastodon');
                 console.log(`Posted: ${post.title}`);
             } catch (e) {}
 
-        } while (!status && posts.length);
+        } while (!status && filtered.length);
 
     } catch (e) {
         console.error(e.message);
