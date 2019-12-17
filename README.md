@@ -3,4 +3,4 @@
 Initially made to post hot posts from /r/funny to Mastodon instance of your choice,
 can be easily extended for more general usage
 
-Currently posting as @funny@botsin.space
+Currently posting as @funny@botsin.space, is being run using cron every 15 minutes
