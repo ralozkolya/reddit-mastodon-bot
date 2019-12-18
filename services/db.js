@@ -1,3 +1,5 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname + '/../.env') });
 const { host, database, username: user, password } = process.env;
 
 const knex = require('knex')({
