@@ -1,6 +1,8 @@
+const { createReadStream, promises: { unlink } } = require('fs');
+
+const { convertVideo, convertPhoto } = require('./ffmpeg');
 const { access_token, mastodon_host } = process.env;
 
-const request = require('request');
 const Masto = require('mastodon');
 
 const client = new Masto({
@@ -14,10 +16,20 @@ async function postStatus(post) {
         return;
     }
 
+    let url;
+
+    if (post.video) {
+        url = await convertVideo(post.video);
+    } else {
+        url = await convertPhoto(post.url);
+    }
+
     const { data: { id } } = await client.post('/media', {
-        file: request(post.url),
+        file: createReadStream(url),
         focus: '0,1'
     });
+
+    unlink(url);
 
     return client.post('/statuses', {
         status: post.title + '\n#funny',

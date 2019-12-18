@@ -16,8 +16,8 @@ async function getFiltered(list = []) {
     return list.filter(post => !ids.includes(post.id));
 }
 
-function store(post) {
-    return knex('shown').insert(post);
+function store({ id, title, url }) {
+    return knex('shown').insert({ id, title, url });
 }
 
 module.exports = { knex, store, getFiltered };
