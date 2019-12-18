@@ -20,7 +20,7 @@ async function convertPhoto(url) {
 
 async function convert(url, command, ext) {
 
-    ext = ext || (path.parse(url).ext || '.mp4');
+    ext = ext || (path.parse(url).ext || '.jpg');
     const tempOriginal = path.join(os.tmpdir(), uuid() + ext);
     const tempPath = path.join(os.tmpdir(), uuid() + ext);
 
