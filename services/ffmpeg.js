@@ -27,7 +27,7 @@ async function convert(url, command, ext) {
     const ws = createWriteStream(tempOriginal);
     await streamToPromise(request(url).pipe(ws));
 
-    await execPromise(`${ffmpegPath} -i ${tempOriginal} ${command}  ${tempPath}`);
+    await execPromise(`${ffmpegPath} -v quiet -y -i ${tempOriginal} ${command}  ${tempPath}`);
 
     promisify(unlink)(tempOriginal);
 
