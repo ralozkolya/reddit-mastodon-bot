@@ -17,7 +17,7 @@ async function getHot(limit = 5) {
     return posts.map(post => ({
         title: post.title,
         url: post.url,
-        video: post.secure_media && post.secure_media.reddit_video.fallback_url,
+        video: post.secure_media && post.secure_media.reddit_video && post.secure_media.reddit_video.fallback_url,
         id: post.name,
     }));
 }
