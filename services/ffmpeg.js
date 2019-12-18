@@ -3,7 +3,7 @@ const os = require('os');
 const path = require('path');
 const uuid = require('uuid/v1');
 const request = require('request');
-const { createWriteStream, promises: { unlink } } = require('fs');
+const { createWriteStream, unlink } = require('fs');
 const streamToPromise = require('stream-to-promise');
 const { promisify } = require('util');
 const { exec } = require('child_process');
@@ -29,7 +29,7 @@ async function convert(url, command) {
 
     await execPromise(`${ffmpegPath} -i ${tempOriginal} ${command}  ${tempPath}`);
 
-    unlink(tempOriginal);
+    promisify(unlink)(tempOriginal);
 
     return tempPath;
 }

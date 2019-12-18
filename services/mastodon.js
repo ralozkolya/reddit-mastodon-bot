@@ -1,4 +1,5 @@
-const { createReadStream, promises: { unlink } } = require('fs');
+const { createReadStream, unlink } = require('fs');
+const { promisify } = require('util');
 
 const { convertVideo, convertPhoto } = require('./ffmpeg');
 const { access_token, mastodon_host } = process.env;
@@ -29,7 +30,7 @@ async function postStatus(post) {
         focus: '0,1'
     });
 
-    unlink(url);
+    promisify(unlink)(url);
 
     return client.post('/statuses', {
         status: post.title + '\n#funny',
