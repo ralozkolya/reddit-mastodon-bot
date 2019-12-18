@@ -10,9 +10,9 @@ const client = new Swoowrap({
     refreshToken
 });
 
-async function getHot(limit = 5) {
+async function getHot(limit = 25) {
 
-    let posts = await client.getSubreddit('funny').getHot({ limit: 25 });
+    let posts = await client.getSubreddit('funny').getHot({ limit });
 
     return posts.map(post => ({
         title: post.title,
