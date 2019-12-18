@@ -2,3 +2,4 @@
 node_modules
 .migrate
 .idea
+test.js
