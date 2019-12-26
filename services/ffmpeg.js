@@ -8,8 +8,6 @@ const streamToPromise = require('stream-to-promise');
 const { promisify } = require('util');
 const { exec } = require('child_process');
 
-const execPromise = promisify(exec);
-
 async function convertVideo(url) {
     return convert(url, '-pix_fmt yuv420p -codec libx264', '.mp4');
 }
@@ -27,9 +25,11 @@ async function convert(url, command, ext) {
     const ws = createWriteStream(tempOriginal);
     await streamToPromise(request(url).pipe(ws));
 
-    await execPromise(`${ffmpegPath} -v quiet -y -i ${tempOriginal} ${command}  ${tempPath}`);
-
-    promisify(unlink)(tempOriginal);
+    try {
+        await promisify(exec)(`${ffmpegPath} -v quiet -y -i ${tempOriginal} ${command}  ${tempPath}`);
+    } finally {
+        promisify(unlink)(tempOriginal);
+    }
 
     return tempPath;
 }

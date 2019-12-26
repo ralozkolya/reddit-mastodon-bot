@@ -17,7 +17,7 @@ async function postStatus(post) {
         return;
     }
 
-    let url;
+    let url, id;
 
     if (post.video) {
         url = await convertVideo(post.video);
@@ -25,12 +25,14 @@ async function postStatus(post) {
         url = await convertPhoto(post.url);
     }
 
-    const { data: { id } } = await client.post('/media', {
-        file: createReadStream(url),
-        focus: '0,1'
-    });
-
-    promisify(unlink)(url);
+    try {
+        ({ data: { id } } = await client.post('/media', {
+            file: createReadStream(url),
+            focus: '0,1'
+        }));
+    } finally {
+        promisify(unlink)(url);
+    }
 
     return client.post('/statuses', {
         status: post.title + '\n#funny',
