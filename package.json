@@ -1,10 +1,9 @@
 {
   "name": "reddit-bot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "start": "node-dev index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node-dev index.js"
   },
   "author": "Nikoloz Razmadze <nikoloz@razmadze.me>",
   "license": "ISC",
