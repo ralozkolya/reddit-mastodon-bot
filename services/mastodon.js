@@ -36,7 +36,7 @@ async function postStatus(post) {
 
     return client.post('/statuses', {
         status: post.title + '\n'
-            + post.url + '\n'
+            + post.permalink + '\n'
             + '#funny',
         media_ids: [ id ]
     });

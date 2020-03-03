@@ -28,6 +28,7 @@ async function getHot(limit = 25) {
             url: post.url,
             video, audio,
             id: post.name,
+            permalink: 'https://reddit.com' + post.permalink
         };
     });
 }
