@@ -20,7 +20,7 @@ async function postStatus(post) {
     let url, id;
 
     if (post.video) {
-        url = await convertVideo(post.video);
+        url = await convertVideo(post.video, post.audio);
     } else {
         url = await convertPhoto(post.url);
     }
@@ -35,7 +35,9 @@ async function postStatus(post) {
     }
 
     return client.post('/statuses', {
-        status: post.title + '\n#funny',
+        status: post.title + '\n'
+            + post.url + '\n'
+            + '#funny',
         media_ids: [ id ]
     });
 }
