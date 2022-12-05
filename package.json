@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "mocha": "^10.1.0",
-    "node-dev": "^4.0.0"
+    "node-dev": "^7.4.3"
   }
 }
